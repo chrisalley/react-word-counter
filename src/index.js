@@ -134,7 +134,7 @@ class WordCounter extends React.Component {
     const progress = wordCount / targetWordCount
 
     return (
-      <form class='measure pa4 sans-serif'>
+      <form className='measure pa4 sans-serif'>
         <Editor
           onTextChange={this.handleTextChange}
           text={text}

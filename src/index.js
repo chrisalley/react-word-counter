@@ -51,6 +51,10 @@ class WordCounter extends React.Component {
     this.state = { text: '' }
   }
 
+  handleTextChange (currentText) {
+    this.setState(() => ({ text: currentText }))
+  }
+
   render () {
     const { targetWordCount } = this.props
     const { text } = this.state
@@ -68,6 +72,6 @@ class WordCounter extends React.Component {
 }
 
 ReactDOM.render(
-  <WordCounter text='Count the words in here.' targetWordCount={10} />,
+  <WordCounter targetWordCount={10} />,
   document.getElementById('root')
 )

@@ -26,8 +26,13 @@ function ProgressBar ({ completion }) {
 }
 
 function Editor ({
-  text
+  text,
+  onTextChange
 }) {
+  function handleChange (event) {
+    onTextChange(event.target.value)
+  }
+
   return (
     <div className='flex flex-column mv2'>
       <label htmlFor='editor' className='mv2'>
@@ -35,6 +40,7 @@ function Editor ({
       </label>
       <textarea
         value={text}
+        onChange={handleChange}
         id='editor'
       />
     </div>
@@ -49,6 +55,7 @@ class WordCounter extends React.Component {
   constructor () {
     super()
     this.state = { text: '' }
+    this.handleTextChange = this.handleTextChange.bind(this)
   }
 
   handleTextChange (currentText) {
@@ -63,7 +70,10 @@ class WordCounter extends React.Component {
 
     return (
       <form class='measure pa4 sans-serif'>
-        <Editor text={text} />
+        <Editor
+          onTextChange={this.handleTextChange}
+          text={text}
+        />
         <Counter count={wordCount} />
         <ProgressBar completion={progress} />
       </form>

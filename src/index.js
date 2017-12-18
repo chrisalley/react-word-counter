@@ -45,19 +45,26 @@ function countWords (text) {
   return text ? text.match(/\w+/g).length : 0
 }
 
-function WordCounter ({ text, targetWordCount }) {
-  const wordCount = countWords(text)
-  const progress = wordCount / targetWordCount
+class WordCounter extends React.Component {
+  constructor () {
+    super()
+    this.state = { text: '' }
+  }
 
-  return (
-    <form className='measure pa4 sans-serif'>
-      <Editor text={text} />
-      <div className='flex mt3'>
+  render () {
+    const { targetWordCount } = this.props
+    const { text } = this.state
+    const wordCount = countWords(text)
+    const progress = wordCount / targetWordCount
+
+    return (
+      <form class='measure pa4 sans-serif'>
+        <Editor text={text} />
         <Counter count={wordCount} />
         <ProgressBar completion={progress} />
-      </div>
-    </form>
-  )
+      </form>
+    )
+  }
 }
 
 ReactDOM.render(
